@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>List of users</title>
+</head>
+<body>
+<h1>List of users</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Age</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userList}">
+        <td><input type="number" th:value="${user.id}" /></td>
+        <td><input type="text" th:value="${user.username}" /></td>
+        <td><input type="number" th:value="${user.age}" /></td>
+        <td><input type="email" th:value="${user.email}" /></td>
+        <td>
+            <a th:href="@{/users/edit(id=${user.id})}">Edit</a>
+            <a th:href="@{/users/delete(id=${user.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" th:onclick="addUser"><a href=@{/users/new}>Add new user</a></button>
+</body>
+</html>
